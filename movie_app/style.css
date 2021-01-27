@@ -43,7 +43,14 @@ main {
     background-color: #7378c5
 
 }
+#movie-container{
+    background-position: center;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+}
 .card{
     box-shadow: 0 0 10px 4px rgba(1, 1, 1, 0.1);
-    margin-bottom: 1rem;
+    
 }

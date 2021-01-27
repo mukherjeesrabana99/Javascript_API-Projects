@@ -1,6 +1,6 @@
 const form=document.querySelector("#form");
 const search=document.querySelector("#search");
-const main=document.getElementById("main");
+const movie_container=document.getElementById("movie-container");
 const btns=document.querySelectorAll(".btn")
 //API URLS
 const highest_rated_url="https://api.themoviedb.org/3/discover/movie?certification_country=US&certification=R&sort_by=vote_average.desc&primary_release_date.lte=2014-10-22&api_key=ad46f36c2b4f56ecbe2b758da6569806"
@@ -10,7 +10,8 @@ const drama_url="https://api.themoviedb.org/3/discover/movie?with_genres=18&sort
 const popular_url="https://api.themoviedb.org/3/discover/movie?sort_by=popularity.desc&api_key=ad46f36c2b4f56ecbe2b758da6569806"
 const IMGPATH = "http://image.tmdb.org/t/p/w92";
 const searchURL="https://api.themoviedb.org/3/search/movie?api_key=ad46f36c2b4f56ecbe2b758da6569806&query="
-//parent function that takes url as the parameter that will take care of i)fetching desired results on passing 
+//parent function that takes url as the parameter that will take care of i)fetching
+// desired results  under different circumstances taking
 //different urls as  arguments ii)display the items in card form by calling 
 //displayMovie function
 async function loadMovies(url){
@@ -21,7 +22,7 @@ async function loadMovies(url){
 
 }
 loadMovies(popular_url)
-//card will be generated for each of the items of the array ; fetched from the api
+//card will be generated for each if the items of the array from fetched api
 displayMovie=items=>{
 	const all_items=items.map(item=>{
 		return `
@@ -38,30 +39,15 @@ displayMovie=items=>{
 		</div>
 		`
 	})
-	main.innerHTML=all_items.join("")
+	movie_container.innerHTML=all_items.join("")
 }
 form.addEventListener("submit", (e)=>{
 	e.preventDefault();
-	loadSearchedMovies()
-})
-// async function loadSearchedMovies(){
-// 	const form_url=searchURL+search.value
-// 	const res=await fetch(form_url)
-// 	const respData=await res.json()
-// 	console.log(respData)
-// 	displayMovie(respData.results)
-// }
-//Instead of repeating the same lines of code in order to fetch the data from apis
-//we can define one single parent function that will take care of calling different
- //apis and displaying the movies  for loading the data  and pass url as 
-
-//the parameter as that is the only thing varying in the function
-
-function loadSearchedMovies(){
-	const form_url=searchURL+search.value
-	loadMovies(form_url)
+	// loadSearchedMovies()
+	loadMovies(searchURL+search.value)
 	search.value=""
-}
+})
+
 btns.forEach(btn=>{
 	btn.addEventListener("click",function(){
 		switch(this.id){
@@ -84,3 +70,69 @@ btns.forEach(btn=>{
 		}
 	})
 })
+
+
+// async function loadSearchedMovies(){
+// 	const form_url=searchURL+search.value
+// 	const res=await fetch(form_url)
+// 	const respData=await res.json()
+// 	console.log(respData)
+// 	displayMovie(respData.results)
+// }
+//Instead of repeating the same lines of code in order to fetch the data from apis
+//we can define one single parent function that will take care of calling different
+ //apis and displaying the movies  for loading the data  and pass url as 
+
+//the parameter as that is the only thing varying in the function
+
+// function loadSearchedMovies(){
+// 	const form_url=searchURL+search.value
+// 	loadMovies(form_url)
+// 	search.value=""
+// }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+// async function f(){
+// 	// const url= "https://www.googleapis.com/books/v1/volumes?q=isbn:0747532699";
+// 	// const url="https://www.googleapis.com/books/v1/volumes?q=isbn:0747532699"
+// 	const url="https://api.themoviedb.org/3/discover/movie?primary_release_date.gte=2014-09-15&primary_release_date.lte=2014-10-22&api_key=ad46f36c2b4f56ecbe2b758da6569806"
+// 	// const url="http://hp-api.herokuapp.com/api/characters"
+// 	// const url="api.openweathermap.org/data/2.5/weather?q=London&appid=cc67b7d0ce2317f2498711dcfda3bba4"
+// 	const response= await fetch(url);
+//     const data= await response.json();
+//     console.log(data)
+    
+
+// }
+// f();
