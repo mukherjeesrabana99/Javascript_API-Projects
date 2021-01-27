@@ -29,7 +29,7 @@ displayMovie=items=>{
 		<div class="card" style="width: 17rem; height:auto;">
 		  <img class="card-img-top" src="${IMGPATH+item.poster_path}">
 		  <div class="card-body">
-		    <h5 class="card-text">${item.original_title}</h5>
+		    <h5 class="card-text">${item.original_title}<span style="color:#7378c5;">(lang:${item.original_language})</span></h5>
 		    <p class="card-text">${item.overview}</p>
 		    <h6 class="card-text"><span style="color:#7378c5;">Release-Date:</span> ${item.release_date}</h6>
 		    <h6 class="card-text"><span style="color:#7378c5;">Rating:</span>${item.vote_average}</h6>
