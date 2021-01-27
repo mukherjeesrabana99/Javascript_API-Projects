@@ -52,5 +52,5 @@ main {
 }
 .card{
     box-shadow: 0 0 10px 4px rgba(1, 1, 1, 0.1);
-    
+    margin-bottom:1rem;
 }
