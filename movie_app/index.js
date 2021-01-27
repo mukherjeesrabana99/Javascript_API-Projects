@@ -2,13 +2,15 @@ const form=document.querySelector("#form");
 const search=document.querySelector("#search");
 const main=document.getElementById("main");
 const btns=document.querySelectorAll(".btn")
+//API URLS
 const highest_rated_url="https://api.themoviedb.org/3/discover/movie?certification_country=US&certification=R&sort_by=vote_average.desc&primary_release_date.lte=2014-10-22&api_key=ad46f36c2b4f56ecbe2b758da6569806"
 const kids_url="https://api.themoviedb.org/3/discover/movie?certification_country=US&certification.lte=G&sort_by=popularity.desc&primary_release_date.lte=2014-10-22&api_key=ad46f36c2b4f56ecbe2b758da6569806"
 const comedies_url="https://api.themoviedb.org/3/discover/movie?with_genres=35&with_cast=23659&sort_by=revenue.desc&api_key=ad46f36c2b4f56ecbe2b758da6569806"
 const drama_url="https://api.themoviedb.org/3/discover/movie?with_genres=18&sort_by=vote_average.desc&vote_count.gte=10&api_key=ad46f36c2b4f56ecbe2b758da6569806"
+const popular_url="https://api.themoviedb.org/3/discover/movie?sort_by=popularity.desc&api_key=ad46f36c2b4f56ecbe2b758da6569806"
 const IMGPATH = "http://image.tmdb.org/t/p/w92";
 const searchURL="https://api.themoviedb.org/3/search/movie?api_key=ad46f36c2b4f56ecbe2b758da6569806&query="
-const popular_url="https://api.themoviedb.org/3/discover/movie?sort_by=popularity.desc&api_key=ad46f36c2b4f56ecbe2b758da6569806"
+//parent function for calling api as well as displaying items
 async function loadMovies(url){
 	const response= await fetch(url);
     const data= await response.json();
@@ -17,6 +19,7 @@ async function loadMovies(url){
 
 }
 loadMovies(popular_url)
+//card or box will be generated for each of the items of the array of the fetched api
 displayMovie=items=>{
 	const all_items=items.map(item=>{
 		return `
