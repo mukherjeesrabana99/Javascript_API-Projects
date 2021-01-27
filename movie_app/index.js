@@ -10,8 +10,8 @@ const drama_url="https://api.themoviedb.org/3/discover/movie?with_genres=18&sort
 const popular_url="https://api.themoviedb.org/3/discover/movie?sort_by=popularity.desc&api_key=ad46f36c2b4f56ecbe2b758da6569806"
 const IMGPATH = "http://image.tmdb.org/t/p/w92";
 const searchURL="https://api.themoviedb.org/3/search/movie?api_key=ad46f36c2b4f56ecbe2b758da6569806&query="
-//parent function  that will take care of i)fetching desired results on passing 
-//different url parameters ii)display the items in card form by calling 
+//parent function that takes url as the parameter that will take care of i)fetching desired results on passing 
+//different urls as  arguments ii)display the items in card form by calling 
 //displayMovie function
 async function loadMovies(url){
 	const response= await fetch(url);
@@ -21,7 +21,7 @@ async function loadMovies(url){
 
 }
 loadMovies(popular_url)
-//card will be generated for each if the items of the array from fetched api
+//card will be generated for each of the items of the array ; fetched from the api
 displayMovie=items=>{
 	const all_items=items.map(item=>{
 		return `
@@ -84,52 +84,3 @@ btns.forEach(btn=>{
 		}
 	})
 })
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-// async function f(){
-// 	// const url= "https://www.googleapis.com/books/v1/volumes?q=isbn:0747532699";
-// 	// const url="https://www.googleapis.com/books/v1/volumes?q=isbn:0747532699"
-// 	const url="https://api.themoviedb.org/3/discover/movie?primary_release_date.gte=2014-09-15&primary_release_date.lte=2014-10-22&api_key=ad46f36c2b4f56ecbe2b758da6569806"
-// 	// const url="http://hp-api.herokuapp.com/api/characters"
-// 	// const url="api.openweathermap.org/data/2.5/weather?q=London&appid=cc67b7d0ce2317f2498711dcfda3bba4"
-// 	const response= await fetch(url);
-//     const data= await response.json();
-//     console.log(data)
-    
-
-// }
-// f();
