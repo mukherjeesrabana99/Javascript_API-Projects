@@ -14,6 +14,7 @@ header {
     display: flex;
     justify-content: flex-end;
     padding: 1rem;
+    
 }
 
 .search {
@@ -39,4 +40,10 @@ header {
 main {
     display: flex;
     flex-wrap: wrap;
+    background-color: #7378c5
+
+}
+.card{
+    box-shadow: 0 0 10px 4px rgba(1, 1, 1, 0.1);
+    margin-bottom: 1rem;
 }
