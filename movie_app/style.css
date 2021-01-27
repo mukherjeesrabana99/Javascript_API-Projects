@@ -40,7 +40,7 @@ header {
 main {
     display: flex;
     flex-wrap: wrap;
-    background-color: #7378c5
+    background-color: black;
 
 }
 #movie-container{
@@ -53,4 +53,6 @@ main {
 .card{
     box-shadow: 0 0 10px 4px rgba(1, 1, 1, 0.1);
     margin-bottom:1rem;
+    margin-top:1rem;
+    
 }
