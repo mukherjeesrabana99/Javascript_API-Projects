@@ -1,8 +1,10 @@
 const chr_container=document.getElementById("chr-container");
+const search=document.getElementById("search");
+let characters=[]
 const chr_url="http://hp-api.herokuapp.com/api/characters"
 async function loadCharacters(url){
 	const response=await fetch(url)
-	const characters=await response.json()
+	characters=await response.json()
 	displayCharacter(characters)
 	console.log(characters)
 }
@@ -28,4 +30,15 @@ displayCharacter=persons=>{
 	})
 	chr_container.innerHTML=all_persons.join("")
 }
+search.addEventListener('keyup', (e)=>{
+	console.log(e.target.value)
+	const searched_chr=characters.filter(chr=>{
+		return(
+			chr.name.toLowerCase().includes(e.target.value.toLowerCase())||
+			chr.house.toLowerCase().includes(e.target.value.toLowerCase())
+			)
+	})
+	displayCharacter(searched_chr)
+})
+
 
