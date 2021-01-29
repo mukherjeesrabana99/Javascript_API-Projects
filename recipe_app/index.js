@@ -61,6 +61,8 @@ form.addEventListener("submit",(e)=>{
 /////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////
 //GIVE A CALL TO THE API TO FETCH CATEGORY LIST
+//RENDERING LIST OF ALL CATEGORIES WHICH THE USER CAN CLICK ON TO GET FOODS OF THAT
+// PARTICULAR CATEGORIES
 async function loadCats(){
 	const response=await fetch(cats_list_url)
 	const data=await response.json()
@@ -71,13 +73,15 @@ async function loadCats(){
 displayCat=(cats)=>{
 	all_cats=cats.map(cat=>{
 		return`
-		<li style="cursor:pointer;" onClick="getFilteredMeal(this.textContent,cat_url+this.textContent)">${cat.strCategory}</li>
+		<a  style="display:block; padding:1rem; cursor:pointer;" onClick="getFilteredMeal(this.textContent,cat_url+this.textContent)">${cat.strCategory}</a>
 		`
 	})
 	param_list_div.innerHTML=all_cats.join("");
 }
 ///////////////////////////////////////////////////////////////
 //GIVE A CALL TO THE API TO FETCH AREA LIST
+//RENDERING LIST OF ALL AREAS WHICH THE USER CAN CLICK ON TO GET FOODS OF THAT
+// PARTICULAR AREA
 async function loadArea(){
 	const response=await fetch(area_list_url)
 	const data=await response.json()
@@ -89,7 +93,7 @@ async function loadArea(){
 displayArea=(areas)=>{
 	all_area=areas.map(area=>{
 		return`
-		<li style="cursor:pointer;" onClick="getFilteredMeal(this.textContent,area_url+this.textContent)">${area.strArea}</li>
+		<a style="display:block; padding:1rem; cursor:pointer;" onClick="getFilteredMeal(this.textContent,area_url+this.textContent)">${area.strArea}</a>
 		`
 	})
 	param_list_div.innerHTML=all_area.join("");
@@ -159,7 +163,7 @@ displayMealDetail=(foods)=>{
 		    <h4 style="color:#7378c5;">${food.strMeal}</h4>
 		  </div>
 		  <div class="card-body">
-		  	<img src="${food.strMealThumb}" style="height:auto; width:190px;">
+		  	<img src="${food.strMealThumb}" style="height:auto; width:auto;">
 		    <h5 class="card-title" style="color:#7378c5;">${food.strCategory},${food.strArea}</h5>
 		    <p class="card-text"><span style="color:#7378c5;"><b>Instructions: </b></span>${food.strInstructions}.</p>
 		  </div>
