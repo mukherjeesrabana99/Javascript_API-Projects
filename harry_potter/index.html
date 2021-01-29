@@ -6,27 +6,23 @@
 </head>
 <body>
 	<header>
-		<div class="row">
-			<div class="col-lg-2 col-md-6 col-sm-6">
-			<button  class="mb-1 mr-1 btn btn-warning" id="gry">Gryffindor</button>
-			</div>
-			<div class="col-lg-2 col-md-6 col-sm-6">
-			<button  class="mt-1 mb-1 mr-1 ml-1 btn btn-success" id="huff">Hufflepuff</button>
-			</div>
-			<div class="col-lg-2 col-md-6 col-sm-6">
-			<button  class="mt-1 mb-1 ml-1 mr-1  btn btn-danger" id="rav">Ravenclaw</button>
-			</div>
-			<div class="col-lg-2 col-md-6 col-sm-6">
-			<button  class=" mt-1 mb-1 mr-1 ml-1 btn btn-info" id="sly">Slytherin</button>
-			</div>
-			<div class="col-lg-2 col-md-6 col-sm-6">
+		
+			
+				<button  class="mb-1 mr-1 btn btn-danger" id="modal-btn">Houses</button>
+			
+			
 			<button  class=" mt-1 mb-1 mr-1 ml-1 btn btn-warning" id="students">Students</button>
-			</div>
-			<div class="col-lg-2 col-md-6 col-sm-6">
+			
+			
 			<button  class=" mt-1 ml-1 btn btn-success" id="staffs">Staffs</button>
-			</div>
-		</div>
+			
+		
 		<input type="text" placeholder="search" id="search">
+		<div class="modal-container hidden">
+			<button class="ml-auto" id="close-btn"><i class="fa fa-times"></i></button>
+			<ul id="house-div"></ul>
+			
+		</div>
 	</header>
 	<main id="main">
 		<div id="chr-container" class="row"></div>

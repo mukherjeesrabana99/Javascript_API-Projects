@@ -1,11 +1,19 @@
+//ACCESS ALL DOM DIVS TO BE POPULATED BY API DATA
 const chr_container=document.getElementById("chr-container");
 const search=document.getElementById("search");
 const btns=document.querySelectorAll(".btn");
+const modal_container=document.querySelector(".modal-container");
+const close_btn=document.querySelector("#close-btn");
+const house_div=document.querySelector("#house-div");
+//////////////////////////////////////////////////////////////////////////
 let characters=[]
+//API URLS
 const chr_url="http://hp-api.herokuapp.com/api/characters"
 const house_url="http://hp-api.herokuapp.com/api/characters/house/"
 const student_url="http://hp-api.herokuapp.com/api/characters/students"
 const staff_url="http://hp-api.herokuapp.com/api/characters/staff"
+////////////////////////////////////////////////////////////////////////////////
+//GIVE A CALL TO THE API TO FETCH DATA AND DISPLAY THEM ON DOM LOAD
 async function loadCharacters(url){
 	const response=await fetch(url)
 	characters=await response.json()
@@ -34,6 +42,7 @@ displayCharacter=persons=>{
 	})
 	chr_container.innerHTML=all_persons.join("")
 }
+//GIVE A CALL TO THE API TO FETCH DATA AND DISPLAY THEM ON SEARCH
 search.addEventListener('keyup', (e)=>{
 	console.log(e.target.value)
 	const searched_chr=characters.filter(chr=>{
@@ -44,24 +53,21 @@ search.addEventListener('keyup', (e)=>{
 	})
 	displayCharacter(searched_chr)
 })
+//RENDERING LIST OF ALL HOUSES WHICH THE USER CAN CLICK ON TO GET PEOPLE OF THAT
+// PARTICULAR HOUSE
+house_div.innerHTML=`
+<a style="display:block; padding:1rem; cursor:pointer;" onClick="getHouseChrs(this.textContent)">Gryffindor</a>
+<a style="display:block; padding:1rem; cursor:pointer;" onClick="getHouseChrs(this.textContent)">Hufflepuff</a>
+<a style="display:block; padding:1rem; cursor:pointer;" onClick="getHouseChrs(this.textContent)">Ravenclaw</a>
+<a style="display:block; padding:1rem; cursor:pointer;" onClick="getHouseChrs(this.textContent)">Slytherin</a>
+`
+///////////////////////////////////////////////////////////////////////////////
 btns.forEach(btn=>{
 	btn.addEventListener("click", function(){
 		switch(this.textContent){
-			case "Gryffindor":
-			console.log("Gryffindor clicked");
-			loadCharacters(house_url+this.textContent)
-			break;
-			case "Hufflepuff":
-			console.log("Hufflepuff clicked");
-			loadCharacters(house_url+this.textContent)
-			break;
-			case "Ravenclaw":
-			console.log("Ravenclaw clicked");
-			loadCharacters(house_url+this.textContent)
-			break;
-			case "Slytherin":
-			console.log("Slytherin clicked");
-			loadCharacters(house_url+this.textContent)
+			case "Houses":
+			console.log("Houses clicked");
+			modal_container.classList.remove("hidden")
 			break;
 			case "Students":
 			console.log("Students clicked");
@@ -74,5 +80,14 @@ btns.forEach(btn=>{
 		}
 	})
 })
+//BTN FOR CLOSING THE MODAL
+close_btn.addEventListener("click", ()=>modal_container.classList.add("hidden"));
+//GIVE A CALL TO THE API TO FETCH  DATA FILTERED BY HOUSE NAMES AND DISPLAY THEM 
+//ON CLICKING ON ANY OF THE NAMES + CLOSE THE MODAL
+function getHouseChrs(text){
+	console.log(`${text} clicked`);
+	loadCharacters(house_url+text)
+	modal_container.classList.add("hidden")
+}
 
 

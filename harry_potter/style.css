@@ -13,7 +13,8 @@ header {
     background-color: #373b69;
     display: flex;
     justify-content: flex-end;
-    padding:4% 27%;
+    padding:2% 27%;
+    
     
 }
 #search {
@@ -35,6 +36,22 @@ header {
     background-color: #22254b;
     outline: none;
 }
+.modal-container{
+    height:auto;
+    width:auto;
+    display:block;
+    text-align:center;
+    justify-content:center;
+    margin:auto;
+    background-color:white;
+    box-shadow: 0 0 30px 7px rgba(0, 0, 0, 4);
+    z-index:1;
+}
+.hidden{
+    display:none;
+}
+#close-btn{
+    margin-right:100%;
 
 main {
     display: flex;
