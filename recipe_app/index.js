@@ -2,6 +2,9 @@
 const meal_container=document.querySelector("#meal-container");
 const form=document.getElementById("form")
 const search=document.querySelector("#search");
+const modal_container=document.querySelector(".modal-container");
+const close_btn=document.querySelector("#close-btn");
+const param_list_div=document.querySelector(".param-div");
 ////////////////////////////////////////////////////////////
 const btns=document.querySelectorAll(".btn")
 //SEARCH URL TO FETCH SEARCHED MEAL
@@ -27,9 +30,15 @@ loadMeals(random_url)
 displayMeal=(meals)=>{
 	all_meals=meals.map(meal=>{
 		return`
-		<img src="${meal.strMealThumb}">
-		<h3>${meal.strCategory}</h3>
-		<h3>Type: ${meal.strArea}</h3>
+			<div class="col-lg-3 col-md-6 col-sm-6">
+			<div class="card" style="width: 17rem; height:auto;">
+			  <img class="card-img-top" src="${meal.strMealThumb}">
+			  <div class="card-body">
+			    <h6 class="card-text"><span style="color:#7378c5;">Category:</span> ${meal.strCategory}</h6>
+			    <h6 class="card-text"><span style="color:#7378c5;">Type: </span>${meal.strArea}</h6>
+			  </div>
+			</div>
+			</div>
 		`
 	})
 	meal_container.innerHTML=all_meals.join("");
@@ -37,6 +46,7 @@ displayMeal=(meals)=>{
 //GIVE A CALL TO THE API TO FETCH DATA AND DISPLAY THEM ON SEARCH
 form.addEventListener("submit",(e)=>{
 	e.preventDefault();
+	modal_container.classList.add("hidden")
 	if(search.value){
 	loadMeals(search_url+search.value);	
 	}
@@ -59,7 +69,7 @@ displayCat=(cats)=>{
 		<li style="cursor:pointer;" onClick="getFilteredMeal(this.textContent,cat_url+this.textContent)">${cat.strCategory}</li>
 		`
 	})
-	meal_container.innerHTML=all_cats.join("");
+	param_list_div.innerHTML=all_cats.join("");
 }
 ///////////////////////////////////////////////////////////////
 //GIVE A CALL TO THE API TO FETCH AREA LIST
@@ -77,7 +87,7 @@ displayArea=(areas)=>{
 		<li style="cursor:pointer;" onClick="getFilteredMeal(this.textContent,area_url+this.textContent)">${area.strArea}</li>
 		`
 	})
-	meal_container.innerHTML=all_area.join("");
+	param_list_div.innerHTML=all_area.join("");
 }
 ////////////////////////////////////////////////////////////////////
 //DISPLAY AREA AND CATEGORY LIST ON BTN CLICK
@@ -86,10 +96,12 @@ btns.forEach(btn=>{
 		switch(this.id){
 			case "cats-btn":
 			console.log("cats clicked")
+			modal_container.classList.remove("hidden")
 			loadCats();
 			break;
 			case "area-btn":
 			console.log("area clicked")
+			modal_container.classList.remove("hidden")
 			loadArea();
 			break;
 		}
@@ -105,14 +117,22 @@ async function getFilteredMeal(item,url){
 	const data=await response.json()
 	console.log(data)
 	displayFilteredMeal(data.meals)
+	modal_container.classList.add("hidden")
 }
 displayFilteredMeal=(meals)=>{
 	filtered_meals=meals.map(meal=>{
 		return`
-		<img src="${meal.strMealThumb}">
-		<h3>${meal.strMeal}</h3>
+		<div class="col-lg-3 col-md-6 col-sm-6">
+			<div class="card" style="width: 17rem; height:auto;">
+			  <img class="card-img-top" src="${meal.strMealThumb}">
+			  <div class="card-body">
+			    <h6 class="card-text">${meal.strMeal}</h6>
+			  </div>
+			</div>
+			</div>
 		`
 	})
 	meal_container.innerHTML=filtered_meals.join("");
 }
+close_btn.addEventListener("click", ()=>modal_container.classList.add("hidden"))
 ///////////////////////////////////////////////////////////////////////////////
