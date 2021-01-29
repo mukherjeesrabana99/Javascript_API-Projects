@@ -1,7 +1,11 @@
 const chr_container=document.getElementById("chr-container");
 const search=document.getElementById("search");
+const btns=document.querySelectorAll(".btn");
 let characters=[]
 const chr_url="http://hp-api.herokuapp.com/api/characters"
+const house_url="http://hp-api.herokuapp.com/api/characters/house/"
+const student_url="http://hp-api.herokuapp.com/api/characters/students"
+const staff_url="http://hp-api.herokuapp.com/api/characters/staff"
 async function loadCharacters(url){
 	const response=await fetch(url)
 	characters=await response.json()
@@ -17,7 +21,7 @@ displayCharacter=persons=>{
 		  <img class="card-img-top" src="${person.image}">
 		  <div class="card-body">
 		    <h5 class="card-text">${person.name}</h5>
-		    <p class="card-text"><span style="color:#7378c5;">Played By</span>${person.actor}</p>
+		    <p class="card-text"><span style="color:#7378c5;"><b>Played By</b></span>${person.actor}</p>
 		    <h6 class="card-text"><span style="color:#7378c5;">House:</span> ${person.house}</h6>
 		    <h6 class="card-text"><span style="color:#7378c5;">Belongs To:</span>${person.ancestry}</h6>
 			<h6 class="card-text"><span style="color:#7378c5;">Core:</span>${person.wand.core}</h6>
@@ -39,6 +43,36 @@ search.addEventListener('keyup', (e)=>{
 			)
 	})
 	displayCharacter(searched_chr)
+})
+btns.forEach(btn=>{
+	btn.addEventListener("click", function(){
+		switch(this.textContent){
+			case "Gryffindor":
+			console.log("Gryffindor clicked");
+			loadCharacters(house_url+this.textContent)
+			break;
+			case "Hufflepuff":
+			console.log("Hufflepuff clicked");
+			loadCharacters(house_url+this.textContent)
+			break;
+			case "Ravenclaw":
+			console.log("Ravenclaw clicked");
+			loadCharacters(house_url+this.textContent)
+			break;
+			case "Slytherin":
+			console.log("Slytherin clicked");
+			loadCharacters(house_url+this.textContent)
+			break;
+			case "Students":
+			console.log("Students clicked");
+			loadCharacters(student_url)
+			break;
+			case "Staffs":
+			console.log("Staffs clicked");
+			loadCharacters(staff_url)
+			break;
+		}
+	})
 })
 
 
