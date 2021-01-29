@@ -6,10 +6,21 @@
 </head>
 <body>
 	<header>
-		<button  class="btn btn-warning" id="kids">Kids Movies</button>
-		<button  class="btn btn-success" id="rated">Highest Rated Movies</button>
-		<button  class="btn btn-danger" id="comedies">Comedies</button>
-		<button  class="btn btn-info" id="dramas">Best Dramas</button>
+		<div class="row">
+			<div class="col-lg-3 col-md-6 col-sm-6">
+			<button  class="mb-1 btn btn-warning" id="kids">Kids Movies</button>
+			</div>
+			<div class="col-lg-3 col-md-6 col-sm-6">
+			<button  class="mt-1 mb-1 mr-1 btn btn-success" id="rated">Highest Rated</button>
+			</div>
+			<div class="col-lg-3 col-md-6 col-sm-6">
+			<button  class="mt-1 mb-1 ml-1  btn btn-danger" id="comedies">Comedies</button>
+			</div>
+			<div class="col-lg-3 col-md-6 col-sm-6">
+			<button  class=" mt-1 btn btn-info" id="dramas">Best Dramas</button>
+			</div>
+		</div>
+
 		<form id="form">
 		<input type="text" placeholder="Search for a movie" id="search" class="search"/>
 		</form>
