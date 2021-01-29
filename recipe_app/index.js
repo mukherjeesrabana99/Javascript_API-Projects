@@ -15,6 +15,8 @@ const random_url="https://www.themealdb.com/api/json/v1/1/random.php"
 const cats_list_url="https://www.themealdb.com/api/json/v1/1/list.php?c=list"
 const area_list_url="https://www.themealdb.com/api/json/v1/1/list.php?a=list"
 //////////////////////////////////////////////////////////////////////////
+//GET A PARTIUCULAR MEAL WITH THE ID PASSED IN THE URL
+const id_url="https://www.themealdb.com/api/json/v1/1/lookup.php?i="
 //URLS TO GET DATA BASED ON FILTER PARAMETERS
 const cat_url="https://www.themealdb.com/api/json/v1/1/filter.php?c="
 const area_url="https://www.themealdb.com/api/json/v1/1/filter.php?a="
@@ -27,15 +29,17 @@ const loadMeals=async(url)=>{
 	displayMeal(data.meals)
 }
 loadMeals(random_url)
+//GIVE IMAGE THE ID OF THE MEAL SO THAT WHEN IT'S CLICKED IT FETCHES ALL THAT 
+//PARTICULAR MEAL WITH THAT PARTICULAR ID
 displayMeal=(meals)=>{
 	all_meals=meals.map(meal=>{
 		return`
 			<div class="col-lg-3 col-md-6 col-sm-6">
 			<div class="card" style="width: 17rem; height:auto;">
-			  <img class="card-img-top" src="${meal.strMealThumb}">
+			  <img class="card-img-top" style="cursor:pointer;" id="${meal.idMeal}" onClick="getDetail(this.id)" src="${meal.strMealThumb}">
 			  <div class="card-body">
-			    <h6 class="card-text"><span style="color:#7378c5;">Category:</span> ${meal.strCategory}</h6>
-			    <h6 class="card-text"><span style="color:#7378c5;">Type: </span>${meal.strArea}</h6>
+			    <h6 class="card-text">${meal.strMeal}</h6>
+			    <h6 class="card-text"><span style="color:#7378c5;">Type: </span>${meal.strArea},${meal.strCategory}</h6>
 			  </div>
 			</div>
 			</div>
@@ -53,6 +57,7 @@ form.addEventListener("submit",(e)=>{
 	
 	search.value=""
 })
+
 /////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////
 //GIVE A CALL TO THE API TO FETCH CATEGORY LIST
@@ -107,10 +112,12 @@ btns.forEach(btn=>{
 		}
 	})
 })
+//BTN FOR CLOSING THE MODAL
+close_btn.addEventListener("click", ()=>modal_container.classList.add("hidden"));
 //////////////////////////////////////////////////////////////////////////
 /////////////////////////////////////////////////////////////////////////////
 //GIVE A CALL TO THE API TO FETCH  DATA FILTERED BY CAT OR AREA AND DISPLAY THEM 
-//ON CLICKING ON ANY OF AREA OR CATEGORY NAMES
+//ON CLICKING ON ANY OF AREA OR CATEGORY NAMES + CLOSE THE MODAL
 async function getFilteredMeal(item,url){
 	console.log(item)
 	const response=await fetch(url)
@@ -119,12 +126,14 @@ async function getFilteredMeal(item,url){
 	displayFilteredMeal(data.meals)
 	modal_container.classList.add("hidden")
 }
+//GIVE IMAGE THE ID OF THE MEAL SO THAT WHEN IT'S CLICKED IT FETCHES ALL THAT 
+//PARTICULAR MEAL WITH THAT PARTICULAR ID
 displayFilteredMeal=(meals)=>{
 	filtered_meals=meals.map(meal=>{
 		return`
 		<div class="col-lg-3 col-md-6 col-sm-6">
 			<div class="card" style="width: 17rem; height:auto;">
-			  <img class="card-img-top" src="${meal.strMealThumb}">
+			  <img class="card-img-top" style="cursor:pointer;" id="${meal.idMeal}" onClick="getDetail(this.id)" src="${meal.strMealThumb}">
 			  <div class="card-body">
 			    <h6 class="card-text">${meal.strMeal}</h6>
 			  </div>
@@ -134,5 +143,31 @@ displayFilteredMeal=(meals)=>{
 	})
 	meal_container.innerHTML=filtered_meals.join("");
 }
-close_btn.addEventListener("click", ()=>modal_container.classList.add("hidden"))
+//GET EVERY DETAIL OF A MEAL BY CLICKING ON THE IMAGE
+async function getDetail(id){
+	console.log(id)
+	const response=await fetch(id_url+id)
+	const data=await response.json()
+	console.log(data.meals)
+	displayMealDetail(data.meals)
+}
+displayMealDetail=(foods)=>{
+	all_food=foods.map(food=>{
+		return`
+		  <div class="card">
+		  <div class="card-header">
+		    <h4 style="color:#7378c5;">${food.strMeal}</h4>
+		  </div>
+		  <div class="card-body">
+		  	<img src="${food.strMealThumb}" style="height:auto; width:190px;">
+		    <h5 class="card-title" style="color:#7378c5;">${food.strCategory},${food.strArea}</h5>
+		    <p class="card-text"><span style="color:#7378c5;"><b>Instructions: </b></span>${food.strInstructions}.</p>
+		  </div>
+		</div>
+
+		`
+	})
+	meal_container.innerHTML=all_food.join("")
+}
+
 ///////////////////////////////////////////////////////////////////////////////
