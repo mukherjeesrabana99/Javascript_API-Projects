@@ -41,13 +41,14 @@ displayMovie=items=>{
 	})
 	movie_container.innerHTML=all_items.join("")
 }
+//GIVE A CALL TO THE API TO FETCH DATA AND DISPLAY THEM ON SEARCH
 form.addEventListener("submit", (e)=>{
 	e.preventDefault();
 	// loadSearchedMovies()
 	loadMovies(searchURL+search.value)
 	search.value=""
 })
-
+//DISPLAY DIFFERENT KINDS OF MOVIES LIST ON BTN CLICK
 btns.forEach(btn=>{
 	btn.addEventListener("click",function(){
 		switch(this.id){
@@ -90,3 +91,49 @@ btns.forEach(btn=>{
 // 	loadMovies(form_url)
 // 	search.value=""
 // }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+// async function f(){
+// 	// const url= "https://www.googleapis.com/books/v1/volumes?q=isbn:0747532699";
+// 	// const url="https://www.googleapis.com/books/v1/volumes?q=isbn:0747532699"
+// 	const url="https://api.themoviedb.org/3/discover/movie?primary_release_date.gte=2014-09-15&primary_release_date.lte=2014-10-22&api_key=ad46f36c2b4f56ecbe2b758da6569806"
+// 	// const url="http://hp-api.herokuapp.com/api/characters"
+// 	// const url="api.openweathermap.org/data/2.5/weather?q=London&appid=cc67b7d0ce2317f2498711dcfda3bba4"
+// 	const response= await fetch(url);
+//     const data= await response.json();
+//     console.log(data)
+    
+
+// }
+// f();
