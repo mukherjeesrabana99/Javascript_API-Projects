@@ -2,6 +2,7 @@ const search_input=document.querySelector("#search-input");
 const search_btn=document.querySelector("#search-btn");
 const book_container=document.querySelector("#book-container");
 const url= "https://www.googleapis.com/books/v1/volumes?q=";
+
 search_btn.addEventListener("click", function(){
 	loadBooks(url+search_input.value)
 	search_input.value=""
@@ -16,7 +17,9 @@ async function loadBooks(url){
 }
 
 displayBooks=(books)=>{
-	all_books=books.map(book=>{
+	if(books){
+		console.log("yes")
+		all_books=books.map(book=>{
 		return `
 		
 		<div class="col-lg-3 col-md-6 col-sm-6">
@@ -35,4 +38,10 @@ displayBooks=(books)=>{
 		`
 	})
 	book_container.innerHTML=all_books.join("")
+
+	}
+	else{
+		console.log("no")
+		book_container.innerHTML=`<b>No Book Found</b>`
+	}
 }
