@@ -52,12 +52,17 @@ form.addEventListener("submit", (e)=>{
 })
 modal_btn.addEventListener("click",()=>modal_container.classList.remove("hidden"));
 genre_div.innerHTML=`
-<a style="display:block; cursor:pointer; padding:1rem;" onClick="loadMovies(kids_url)">Kids</a>
-<a style="display:block; cursor:pointer; padding:1rem;" onClick="loadMovies(comedies_url)">Comedies</a>
-<a style="display:block; cursor:pointer; padding:1rem;" onClick="loadMovies(highest_rated_url)">Highest Rated</a>
-<a style="display:block; cursor:pointer; padding:1rem;" onClick="loadMovies(drama_url)">Best Dramas</a>
+<a style="display:block; cursor:pointer; padding:1rem;" onClick="getGenreMovies(kids_url)">Kids</a>
+<a style="display:block; cursor:pointer; padding:1rem;" onClick="getGenreMovies(comedies_url)">Comedies</a>
+<a style="display:block; cursor:pointer; padding:1rem;" onClick="getGenreMovies(highest_rated_url)">Highest Rated</a>
+<a style="display:block; cursor:pointer; padding:1rem;" onClick="getGenreMovies(drama_url)">Best Dramas</a>
 `
 close_btn.addEventListener("click",()=>modal_container.classList.add("hidden"));
+function getGenreMovies(url){
+	console.log(url)
+	loadMovies(url)
+	modal_container.classList.add("hidden")
+}
 async function getMovieDetail(id){
 	console.log(id);
 	const url="https://api.themoviedb.org/3/movie/"+id+"?api_key=ad46f36c2b4f56ecbe2b758da6569806"
