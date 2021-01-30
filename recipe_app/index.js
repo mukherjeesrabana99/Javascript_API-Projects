@@ -32,7 +32,9 @@ loadMeals(random_url)
 //GIVE IMAGE THE ID OF THE MEAL SO THAT WHEN IT'S CLICKED IT FETCHES ALL THAT 
 //PARTICULAR MEAL WITH THAT PARTICULAR ID
 displayMeal=(meals)=>{
-	all_meals=meals.map(meal=>{
+	if(meals){
+		console.log("YES")
+		all_meals=meals.map(meal=>{
 		return`
 			<div class="col-lg-3 col-md-6 col-sm-6">
 			<div class="card" id="${meal.idMeal}" onClick="getDetail(this.id)" style="cursor:pointer; width: 17rem; height:auto;">
@@ -46,6 +48,11 @@ displayMeal=(meals)=>{
 		`
 	})
 	meal_container.innerHTML=all_meals.join("");
+	}
+	else{
+		meal_container.innerHTML= `<b style="color:white;">No meal found</b>`
+	}
+	
 }
 //GIVE A CALL TO THE API TO FETCH DATA AND DISPLAY THEM ON SEARCH
 form.addEventListener("submit",(e)=>{
