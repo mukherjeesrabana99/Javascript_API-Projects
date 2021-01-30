@@ -35,8 +35,8 @@ displayMeal=(meals)=>{
 	all_meals=meals.map(meal=>{
 		return`
 			<div class="col-lg-3 col-md-6 col-sm-6">
-			<div class="card" style="width: 17rem; height:auto;">
-			  <img class="card-img-top" style="cursor:pointer;" id="${meal.idMeal}" onClick="getDetail(this.id)" src="${meal.strMealThumb}">
+			<div class="card" id="${meal.idMeal}" onClick="getDetail(this.id)" style="cursor:pointer; width: 17rem; height:auto;">
+			  <img class="card-img-top" src="${meal.strMealThumb}">
 			  <div class="card-body">
 			    <h6 class="card-text">${meal.strMeal}</h6>
 			    <h6 class="card-text"><span style="color:#7378c5;">Type: </span>${meal.strArea},${meal.strCategory}</h6>
@@ -136,8 +136,8 @@ displayFilteredMeal=(meals)=>{
 	filtered_meals=meals.map(meal=>{
 		return`
 		<div class="col-lg-3 col-md-6 col-sm-6">
-			<div class="card" style="width: 17rem; height:auto;">
-			  <img class="card-img-top" style="cursor:pointer;" id="${meal.idMeal}" onClick="getDetail(this.id)" src="${meal.strMealThumb}">
+			<div class="card" id="${meal.idMeal}" onClick="getDetail(this.id)" style="cursor:pointer;width: 17rem; height:auto;">
+			  <img class="card-img-top"   src="${meal.strMealThumb}">
 			  <div class="card-body">
 			    <h6 class="card-text">${meal.strMeal}</h6>
 			  </div>
