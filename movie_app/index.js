@@ -72,8 +72,7 @@ async function getMovieDetail(id){
 	displayMovieDetail(data)
 }
 displayMovieDetail=(movie)=>{
-	
-	movie_container.innerHTML=`
+	base_html=`
 	<div class="card">
 		  <div class="card-header">
 		    <h4 style="color:#7378c5;">${movie.original_title}</h4>
@@ -84,10 +83,21 @@ displayMovieDetail=(movie)=>{
 		    <h5 class="card-title"><span style="color:#7378c5;">Release-Date: </span>${movie.release_date}</h5>
 		    <h5 class="card-title"><span style="color:#7378c5;">Runtime: </span>${movie.runtime}</h5>
 		    <h5 class="card-title"><span style="color:#7378c5;">Budget: </span>${movie.budget}</h5>
-		    <h5 class="card-title"><span style="color:#7378c5;">Collection: </span>${movie.belongs_to_collection.name}</h5>
-		    <img src="${IMGPATH+movie.belongs_to_collection.poster_path}" style="height:auto; width:auto;">
 		    <p class="card-text"><span style="color:#7378c5;"><b>Overview: </b></span>${movie.overview}.</p>
-		  </div>
-	</div>
+
 	`
+	if(movie.belongs_to_collection==null){
+		console.log(movie.original_title)
+	}
+	else{
+		console.log(movie.original_title)
+		base_html+=`
+		<h5 class="card-title"><span style="color:#7378c5;">Collection: </span>${movie.belongs_to_collection.name}</h5>
+		<img src="${IMGPATH+movie.belongs_to_collection.poster_path}" style="height:auto; width:auto;">
+
+		`
+
+	}
+	
+	movie_container.innerHTML=base_html
 }
