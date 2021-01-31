@@ -23,7 +23,7 @@ displayBooks=(books)=>{
 	if(books){
 		
 		all_books=books.map(book=>{
-			const bookImg=book.volumeInfo.imageLink?book.volumeInfo.imageLinks.smallThumbnail:placeHldr
+			const bookImg=book.volumeInfo.imageLinks?book.volumeInfo.imageLinks.smallThumbnail:placeHldr
 			const bookTextSnippet=book.searchInfo?book.searchInfo.textSnippet:"None"
 		return `
 		
@@ -33,6 +33,7 @@ displayBooks=(books)=>{
 		  <div class="card-body">
 		    <b class="card-text" style="color:#7378c5;">${book.volumeInfo.title}</b>
 		    <p class="card-text"><span style="color:#7378c5;"><b>Written By: </b></span>${book.volumeInfo.authors}</p>
+		    <b class="card-text"><span  style="color:#7378c5;">Published on: </span>${book.volumeInfo.publishedDate}</b>
 		    <p class="card-text"><span style="color:#7378c5;"><b>Overview: </b></span>${bookTextSnippet}</p>
 
 
