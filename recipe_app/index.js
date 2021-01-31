@@ -50,6 +50,7 @@ displayMeal=(meals)=>{
 	meal_container.innerHTML=all_meals.join("");
 	}
 	else{
+		console.log("No")
 		meal_container.innerHTML= `<b style="color:white;">No meal found</b>`
 	}
 	
@@ -106,25 +107,27 @@ displayArea=(areas)=>{
 	param_list_div.innerHTML=all_area.join("");
 }
 ////////////////////////////////////////////////////////////////////
+openModal=()=>modal_container.classList.remove("hidden")
+closeModal=()=>modal_container.classList.add("hidden")
 //DISPLAY AREA AND CATEGORY LIST ON BTN CLICK
 btns.forEach(btn=>{
 	btn.addEventListener("click", function(){
 		switch(this.id){
 			case "cats-btn":
 			console.log("cats clicked")
-			modal_container.classList.remove("hidden")
+			openModal()
 			loadCats();
 			break;
 			case "area-btn":
 			console.log("area clicked")
-			modal_container.classList.remove("hidden")
+			openModal()
 			loadArea();
 			break;
 		}
 	})
 })
 //BTN FOR CLOSING THE MODAL
-close_btn.addEventListener("click", ()=>modal_container.classList.add("hidden"));
+close_btn.addEventListener("click", ()=>closeModal());
 //////////////////////////////////////////////////////////////////////////
 /////////////////////////////////////////////////////////////////////////////
 //GIVE A CALL TO THE API TO FETCH  DATA FILTERED BY CAT OR AREA AND DISPLAY THEM 
@@ -135,7 +138,7 @@ async function getFilteredMeal(item,url){
 	const data=await response.json()
 	console.log(data)
 	displayFilteredMeal(data.meals)
-	modal_container.classList.add("hidden")
+	closeModal()
 }
 //GIVE IMAGE THE ID OF THE MEAL SO THAT WHEN IT'S CLICKED IT FETCHES ALL THAT 
 //PARTICULAR MEAL WITH THAT PARTICULAR ID
