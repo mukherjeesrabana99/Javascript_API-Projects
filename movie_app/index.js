@@ -57,11 +57,12 @@ genre_div.innerHTML=`
 <a style="display:block; cursor:pointer; padding:1rem;" onClick="getGenreMovies(highest_rated_url)">Highest Rated</a>
 <a style="display:block; cursor:pointer; padding:1rem;" onClick="getGenreMovies(drama_url)">Best Dramas</a>
 `
-close_btn.addEventListener("click",()=>modal_container.classList.add("hidden"));
+closeModal=()=>modal_container.classList.add("hidden")
+close_btn.addEventListener("click", ()=>closeModal());
 function getGenreMovies(url){
 	console.log(url)
 	loadMovies(url)
-	modal_container.classList.add("hidden")
+	closeModal()
 }
 async function getMovieDetail(id){
 	console.log(id);
