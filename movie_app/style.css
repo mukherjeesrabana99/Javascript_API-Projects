@@ -69,7 +69,7 @@ main {
 }
 .card{
     height:auto;
-    width:auto;
+    width:80%;
     display:block;
     box-shadow: 0 0 10px 4px rgba(1, 1, 1, 0.1);
     margin-top:5rem;
