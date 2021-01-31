@@ -62,12 +62,14 @@ house_div.innerHTML=`
 <a style="display:block; padding:1rem; cursor:pointer;" onClick="getHouseChrs(this.textContent)">Slytherin</a>
 `
 ///////////////////////////////////////////////////////////////////////////////
+openModal=()=>modal_container.classList.remove("hidden")
+closeModal=()=>modal_container.classList.add("hidden")
 btns.forEach(btn=>{
 	btn.addEventListener("click", function(){
 		switch(this.textContent){
 			case "Houses":
 			console.log("Houses clicked");
-			modal_container.classList.remove("hidden")
+			openModal()
 			break;
 			case "Students":
 			console.log("Students clicked");
@@ -80,14 +82,15 @@ btns.forEach(btn=>{
 		}
 	})
 })
+
 //BTN FOR CLOSING THE MODAL
-close_btn.addEventListener("click", ()=>modal_container.classList.add("hidden"));
+close_btn.addEventListener("click", ()=>closeModal());
 //GIVE A CALL TO THE API TO FETCH  DATA FILTERED BY HOUSE NAMES AND DISPLAY THEM 
 //ON CLICKING ON ANY OF THE NAMES + CLOSE THE MODAL
 function getHouseChrs(text){
 	console.log(`${text} clicked`);
 	loadCharacters(house_url+text)
-	modal_container.classList.add("hidden")
+	closeModal()
 }
 
 
